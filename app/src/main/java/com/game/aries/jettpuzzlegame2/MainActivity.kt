@@ -43,8 +43,8 @@ class MainActivity : AppCompatActivity() {
                     ConstraintLayout.LayoutParams.MATCH_PARENT,
                     ConstraintLayout.LayoutParams.MATCH_PARENT
                 )
-                mainActivityLayout.addView(loadingView,params)
-                (mainActivityLayout.loadingAnimator.background as AnimationDrawable).start()
+                vg.addView(loadingView,params)
+                (vg.loadingAnimator.background as AnimationDrawable).start()
             }
             override fun onAnimationEnd(animation: Animator) {}
             override fun onAnimationCancel(animation: Animator) {}
@@ -58,8 +58,8 @@ class MainActivity : AppCompatActivity() {
         transitionAnimExit.addListener(object : Animator.AnimatorListener {
             override fun onAnimationStart(animation: Animator) {}
             override fun onAnimationEnd(animation: Animator) {
-                (mainActivityLayout.loadingAnimator.background as AnimationDrawable).stop()
-                mainActivityLayout.removeView(loadingView)
+                (vg.loadingAnimator.background as AnimationDrawable).stop()
+                vg.removeView(loadingView)
                 MainModel.isTransiting = false
             }
             override fun onAnimationCancel(animation: Animator) {}
