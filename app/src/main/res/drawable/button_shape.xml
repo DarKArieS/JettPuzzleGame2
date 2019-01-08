@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" android:opacity="opaque">
+
+
+    <item android:id="@android:id/background"
+          android:drawable="@drawable/image_quiz3"
+          android:top="4dp"
+          android:bottom="4dp"
+          android:right="4dp"
+          android:left="4dp"/>
+
+    <item>
+        <shape android:shape="rectangle" android:padding="10dp">
+            <corners android:radius="5dp"/>
+            <stroke android:width="5dp"
+                    android:color="#1a1859"/>
+        </shape>
+    </item>
+
+
+
+
+</layer-list>
