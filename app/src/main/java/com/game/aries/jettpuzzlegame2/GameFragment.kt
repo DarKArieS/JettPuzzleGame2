@@ -23,6 +23,9 @@ class GameFragment : Fragment(), GameTimer.TimerBarController {
     ): View? {
         // Inflate the layout for this fragment
         rootView =  inflater.inflate(R.layout.fragment_game, container, false)
+
+        (activity as MainActivity).supportActionBar?.hide()
+
         timeBarAnimator = ProgressBarAnimator(rootView.timerProgressBar, handlerUI)
 
         // setup timer
@@ -91,5 +94,10 @@ class GameFragment : Fragment(), GameTimer.TimerBarController {
 
     override fun timesUp() {
         rootView.timeTextView.text = "time's up"
+    }
+
+    override fun onDestroy() {
+        (activity as MainActivity).supportActionBar?.show()
+        super.onDestroy()
     }
 }

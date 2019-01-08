@@ -11,14 +11,19 @@ import androidx.navigation.findNavController
 import com.game.aries.jettpuzzlegame2.models.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.loading_layout.view.*
+import android.view.ViewGroup
+
+
 
 class MainActivity : AppCompatActivity() {
+    lateinit var vg : ViewGroup
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         initAnimator()
+        vg = window.decorView.rootView as ViewGroup
     }
 
     lateinit var loadingView: View
@@ -74,6 +79,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+
         // TodoDone: Bug: 在非最後一個fragment時按下返回，在動畫中使用多工鍵再切回app時會直接重啟app
 
         if(!MainModel.checkIsLoading()){
