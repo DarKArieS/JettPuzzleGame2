@@ -3,7 +3,7 @@
 
 
     <item android:id="@android:id/background"
-          android:drawable="@drawable/image_quiz3"
+          android:drawable="@drawable/loading0"
           android:top="4dp"
           android:bottom="4dp"
           android:right="4dp"
