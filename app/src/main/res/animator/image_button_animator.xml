@@ -1,22 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item android:state_pressed="true">
         <set>
             <objectAnimator
-                    android:duration="@android:integer/config_shortAnimTime"
+                    android:duration="100"
                     android:propertyName="scaleX"
                     android:valueTo="1.05"
                     android:valueType="floatType" />
             <objectAnimator
-                    android:duration="@android:integer/config_shortAnimTime"
+                    android:duration="100"
                     android:propertyName="scaleY"
                     android:valueTo="1.05"
                     android:valueType="floatType" />
             <objectAnimator
-                    android:duration="@android:integer/config_shortAnimTime"
+                    android:duration="100"
                     android:propertyName="translationZ"
                     android:valueTo="4dp"
                     android:valueType="floatType" />
+
+            <objectAnimator
+                    android:duration="100"
+                    android:propertyName="shiningAlpha"
+                    android:valueTo="150"
+                    android:valueType="intType" />
+
+            <objectAnimator
+                    android:startOffset="100"
+                    android:duration="500"
+                    android:propertyName="shiningAlpha"
+                    android:valueTo="0"
+                    android:valueType="intType" />
         </set>
     </item>
 
@@ -37,6 +51,11 @@
                     android:propertyName="translationZ"
                     android:valueTo="0dp"
                     android:valueType="floatType" />
+            <objectAnimator
+                    android:duration="500"
+                    android:propertyName="shiningAlpha"
+                    android:valueTo="0"
+                    android:valueType="intType" />
         </set>
     </item>
 </selector>

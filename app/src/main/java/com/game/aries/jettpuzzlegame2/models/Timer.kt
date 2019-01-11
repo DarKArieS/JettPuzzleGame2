@@ -2,53 +2,52 @@ package com.game.aries.jettpuzzlegame2.models
 
 import android.os.Handler
 
-class GameTimer(private var timerBarController: GameTimer.TimerBarController){
-    interface TimerBarController{
+class GameTimer(private var timerController: GameTimer.TimerController){
+    interface TimerController{
         fun timerOnUpdate()
         fun timesUp()
     }
 
     var secondsCount = 40f
     var maxTimeInSeconds = secondsCount
-    var isOnStart = false
-    private var stopTimer = false
+    private var isStarted = false
+    private var isStopCalled = false
 
     private lateinit var timerThread: Thread
-    private var handlerUI = Handler()
+    private var uiHandler = Handler()
     private lateinit var runnable: Runnable
 
-    fun startTimer() {
-        if(!isOnStart){
-            isOnStart = true
+    fun start() {
+        if(!isStarted){
+            isStarted = true
 
             timerThread = Thread{
-                while(secondsCount>=0 && !stopTimer){
+                while(secondsCount>=0 && !isStopCalled){
                     Thread.sleep(10) // 0.01 second
                     secondsCount -= 0.01f
                 }
-                if(!stopTimer){
-                    handlerUI.post{
-                        timerBarController.timesUp()
-                        stopTimer()
+                if(!isStopCalled){
+                    uiHandler.post{
+                        timerController.timesUp()
+                        stop()
                     }
                 }
-                println("timer thread end")
             }
 
             runnable = Runnable {
-                timerBarController.timerOnUpdate()
-                handlerUI.postDelayed(runnable, 10)
+                timerController.timerOnUpdate()
+                uiHandler.postDelayed(runnable, 10)
             }
 
-            stopTimer = false
+            isStopCalled = false
             timerThread.start()
-            handlerUI.postDelayed(runnable, 10)
+            uiHandler.postDelayed(runnable, 10)
         }
     }
 
-    fun stopTimer() {
-        stopTimer = true
-        isOnStart = false
-        handlerUI.removeCallbacks(runnable)
+    fun stop() {
+        isStopCalled = true
+        isStarted = false
+        uiHandler.removeCallbacks(runnable)
     }
 }

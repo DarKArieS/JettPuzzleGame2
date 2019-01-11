@@ -2,12 +2,13 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                              xmlns:app="http://schemas.android.com/apk/res-auto"
                                              xmlns:tools="http://schemas.android.com/tools"
+                                             xmlns:custom="http://schemas.android.com/apk/com.game.aries.jettpuzzlegame2.customview"
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent"
                                              tools:context=".GameMenuFragment">
 
 
-    <Button
+    <com.game.aries.jettpuzzlegame2.customview.BlinkingButton
             android:text="Menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

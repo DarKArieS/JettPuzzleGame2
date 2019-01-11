@@ -8,12 +8,10 @@
 
     <!-- Your product logo - 144dp color version of your app icon -->
     <item>
-
         <bitmap
                 android:src="@drawable/puzzle_small"
                 android:gravity="center"
         />
-
     </item>
 
 </layer-list>
