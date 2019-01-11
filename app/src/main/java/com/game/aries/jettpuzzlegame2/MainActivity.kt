@@ -9,16 +9,19 @@ import android.support.constraint.ConstraintLayout
 import android.view.View
 import androidx.navigation.findNavController
 import com.game.aries.jettpuzzlegame2.models.*
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.loading_layout.view.*
+import android.view.ViewGroup
+
 
 class MainActivity : AppCompatActivity() {
+    lateinit var rootViewGroup : ViewGroup
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         initAnimator()
+        rootViewGroup = window.decorView.rootView as ViewGroup
     }
 
     lateinit var loadingView: View
@@ -29,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         transitionAnimEnter = ObjectAnimator
             .ofFloat(loadingView, "alpha", 0f, 1f)
-            .setDuration(800)
+            .setDuration(400)
 
         transitionAnimEnter.addListener(object : Animator.AnimatorListener {
             override fun onAnimationStart(animation: Animator) {
@@ -38,8 +41,8 @@ class MainActivity : AppCompatActivity() {
                     ConstraintLayout.LayoutParams.MATCH_PARENT,
                     ConstraintLayout.LayoutParams.MATCH_PARENT
                 )
-                mainActivityLayout.addView(loadingView,params)
-                (mainActivityLayout.loadingAnimator.background as AnimationDrawable).start()
+                rootViewGroup.addView(loadingView,params)
+                (rootViewGroup.loadingAnimator.background as AnimationDrawable).start()
             }
             override fun onAnimationEnd(animation: Animator) {}
             override fun onAnimationCancel(animation: Animator) {}
@@ -48,13 +51,13 @@ class MainActivity : AppCompatActivity() {
 
         transitionAnimExit = ObjectAnimator
             .ofFloat(loadingView, "alpha", 1f, 0f)
-            .setDuration(800)
+            .setDuration(400)
 
         transitionAnimExit.addListener(object : Animator.AnimatorListener {
             override fun onAnimationStart(animation: Animator) {}
             override fun onAnimationEnd(animation: Animator) {
-                (mainActivityLayout.loadingAnimator.background as AnimationDrawable).stop()
-                mainActivityLayout.removeView(loadingView)
+                (rootViewGroup.loadingAnimator.background as AnimationDrawable).stop()
+                rootViewGroup.removeView(loadingView)
                 MainModel.isTransiting = false
             }
             override fun onAnimationCancel(animation: Animator) {}
@@ -75,7 +78,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         // TodoDone: Bug: 在非最後一個fragment時按下返回，在動畫中使用多工鍵再切回app時會直接重啟app
-
         if(!MainModel.checkIsLoading()){
             val navController = this.findNavController(R.id.fragmentHost)
             val transition = Transition()

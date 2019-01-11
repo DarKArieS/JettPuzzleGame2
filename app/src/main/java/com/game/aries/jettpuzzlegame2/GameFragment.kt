@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.fragment_game.view.*
 import android.os.Handler
 import com.game.aries.jettpuzzlegame2.animclass.ProgressBarAnimator
 
-class GameFragment : Fragment(), GameTimer.TimerBarController {
+class GameFragment : Fragment(), GameTimer.TimerController {
     private lateinit var rootView:View
     private lateinit var timer : GameTimer
     private val handlerUI = Handler()
@@ -23,6 +23,9 @@ class GameFragment : Fragment(), GameTimer.TimerBarController {
     ): View? {
         // Inflate the layout for this fragment
         rootView =  inflater.inflate(R.layout.fragment_game, container, false)
+
+        (activity as MainActivity).supportActionBar?.hide()
+
         timeBarAnimator = ProgressBarAnimator(rootView.timerProgressBar, handlerUI)
 
         // setup timer
@@ -34,14 +37,14 @@ class GameFragment : Fragment(), GameTimer.TimerBarController {
         rootView.timerProgressBar.progress = (timeThreshold*100).toInt()
         rootView.timerProgressBar.secondaryProgress = (timeThreshold*100).toInt()
 
-        timer.startTimer()
+        timer.start()
 
         // setup button experiment
         rootView.gameOption1.setOnClickListener {
             addTime(3f)
         }
         rootView.gameOption2.setOnClickListener {
-            timer.stopTimer()
+            timer.stop()
         }
 
         rootView.gameOption3.setOnClickListener {
@@ -51,7 +54,7 @@ class GameFragment : Fragment(), GameTimer.TimerBarController {
 
         rootView.gameOption4.setOnClickListener {
             //            addTime(-3f)
-            timer.startTimer()
+            timer.start()
         }
 
         //
@@ -71,7 +74,7 @@ class GameFragment : Fragment(), GameTimer.TimerBarController {
 
         // animation
         timeBarAnimator.progressShining(false,500,0.7f)
-        timeBarAnimator.animateUpdatingDelayed(500)
+        timeBarAnimator.delayUpdateProgress(500)
     }
 
     private fun minusTime(second:Float){
@@ -79,7 +82,7 @@ class GameFragment : Fragment(), GameTimer.TimerBarController {
 
         // animation
         timeBarAnimator.progressShining(true)
-        timeBarAnimator.animateUpdatingDelayed(0)
+        timeBarAnimator.delayUpdateProgress(0)
     }
 
     override fun timerOnUpdate() {
@@ -91,5 +94,10 @@ class GameFragment : Fragment(), GameTimer.TimerBarController {
 
     override fun timesUp() {
         rootView.timeTextView.text = "time's up"
+    }
+
+    override fun onDestroy() {
+        (activity as MainActivity).supportActionBar?.show()
+        super.onDestroy()
     }
 }

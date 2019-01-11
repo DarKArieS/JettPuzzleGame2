@@ -11,6 +11,20 @@
     <style name="AppTheme.Launcher">
         <!--Custom splash screen-->
         <item name="android:windowBackground">@drawable/launch_screen</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppThemeGame">
+        <item name="android:windowBackground">@color/colorDark</item>
+    </style>
+    <style name="ImageButton">
+        <item name="android:stateListAnimator">@animator/image_button_animator</item>
+        <item name="android:background">@drawable/img_button_drawable</item>
+        <item name="android:layout_marginBottom">12dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/color_imageButtonText</item>
+        <item name="android:textSize">32sp</item>
     </style>
 
 

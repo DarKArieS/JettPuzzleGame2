@@ -37,7 +37,7 @@
         </clip>
     </item>
 
-    <item android:drawable="@drawable/corner"/>
+    <!--<item android:drawable="@drawable/corner"/>-->
     <!--<item android:alpha="255"-->
           <!--android:id="@+id/timeBarProgressMask">-->
         <!--<clip>-->

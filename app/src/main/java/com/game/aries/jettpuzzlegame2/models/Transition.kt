@@ -23,10 +23,10 @@ class Transition {
                 Thread.sleep(500)
             }
 
-            handlerStatus = handler.post{
-                if(navigation!=null) navigation!!()
-                mainActivity.hideLoadingView()
-            }
+            handlerStatus = handler.post{if(navigation!=null) navigation!!()}
+            Thread.sleep(500)
+
+            handlerStatus = handler.post{mainActivity.hideLoadingView()}
         }
 
         //mainActivity.runOnUiThread{mainActivity.showLoadingView()}
