@@ -83,7 +83,7 @@ class ProgressBarAnimator(private val progressBar: ProgressBar, private val hand
                 }
 
                 if(animStepShining>=animMaxStepShining){
-                    progressBarDrawable.clearColorFilter()
+                    handlerUI.post{progressBarDrawable.clearColorFilter()}
                     isAnimatingShining = false
                 }
             }.start()
