@@ -14,9 +14,9 @@
             app:layout_constraintVertical_bias="0.7"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
             android:layout_marginBottom="11dp"
-            android:textSize="40sp"
+            android:textSize="14sp"
             android:stateListAnimator="@animator/image_button_animator"
-            android:background="@drawable/button_shape" android:text="+ 3s"/>
+            android:text="+ 3s"/>
     <Button
             android:layout_height="100dp"
             android:id="@+id/gameOption2" android:layout_width="175dp"
