@@ -9,7 +9,6 @@ import android.widget.ProgressBar
 class ProgressBarAnimator(private val progressBar: ProgressBar, private val handlerUI: Handler) {
     private var isAnimatingUpdatingDelayed = false
     private var isAnimatingShining = false
-    private var mTrueProgress = 0
 
     fun animateUpdatingDelayed(delayTime: Long){
         if (!isAnimatingUpdatingDelayed){
@@ -91,7 +90,6 @@ class ProgressBarAnimator(private val progressBar: ProgressBar, private val hand
     }
 
     fun update(progressIncrement: Int, trueProgress: Int){
-        mTrueProgress = trueProgress
         if(isAnimatingUpdatingDelayed) progressBar.incrementProgressBy(progressIncrement)
         else progressBar.progress = trueProgress
         progressBar.secondaryProgress = trueProgress
